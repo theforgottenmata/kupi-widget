@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url';
 import { todayInPrague } from './dates.ts';
 import { normalizeProduct, compareDeals, markBest } from './normalize.ts';
 import { parseProductPage } from './parse.ts';
-import { fetchAll } from './scrape.ts';
+import { fetchAll, HttpError } from './scrape.ts';
 import type { Deal, DealsFile, LdOffer, RawOffer, WatchedProduct } from './types.ts';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -125,6 +125,14 @@ export async function generate(options: { dry?: boolean; fixtures?: boolean } = 
       pages = await loadPages(product.slugs, options.fixtures === true, log);
     } catch (error) {
       errors.push(`${product.name}: ${(error as Error).message}`);
+      // Tělo chybové odpovědi uložit — bez něj se 403 nedá odladit.
+      if (error instanceof HttpError) {
+        const info = Object.entries(error.diagnostics)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(', ');
+        if (info) log(`    ↳ ${info}`);
+        await saveDebugHtml(`error-${error.status}-${error.slug}`, error.body);
+      }
       continue;
     }
 

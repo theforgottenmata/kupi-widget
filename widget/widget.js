@@ -11,7 +11,7 @@
 //   4) na plochu přidej widget Scriptable -> Script: tenhle skript,
 //      When Interacting: Run Script
 
-const DEALS_URL = 'https://github.com/theforgottenmata/kupi-widget/deals.json';
+const DEALS_URL = 'https://raw.githubusercontent.com/theforgottenmata/kupi-widget/main/deals.json';
 
 // Kolik řádků se vejde podle velikosti widgetu.
 const ROWS = { small: 3, medium: 5, large: 12, extraLarge: 12 };

@@ -1,0 +1,61 @@
+name: Aktualizace akcí
+
+on:
+  # 04:00 UTC = 06:00 Praha v létě, 05:00 v zimě. DST záměrně neřešíme.
+  # GitHub Actions cron se běžně zpozdí o 5–30 minut, což u denních dat nevadí.
+  schedule:
+    - cron: '0 4 * * *'
+  # Ruční spuštění při vývoji a ladění.
+  workflow_dispatch:
+
+# Bez tohohle skončí commit z Action na 403.
+permissions:
+  contents: write
+
+concurrency:
+  group: update-deals
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Testy parseru
+        run: npm test
+
+      - name: Stáhnout akce a vygenerovat deals.json
+        env:
+          KUPI_SAVE_HTML: '1'
+        run: npm run generate
+
+      # Nahrát i při selhání — jinak nemáme HTML právě v tu chvíli,
+      # kdy ho potřebujeme nejvíc.
+      - name: Uložit stažené HTML pro ladění
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kupi-html
+          path: .debug/
+          retention-days: 7
+          if-no-files-found: ignore
+
+      # Commitujeme i při pouhé změně updatedAt: drží to repozitář aktivní,
+      # takže GitHub nevypne cron po 60 dnech nečinnosti.
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deals.json
+          git diff --staged --quiet || git commit -m "deals: $(date -u +%Y-%m-%d)"
+          git push

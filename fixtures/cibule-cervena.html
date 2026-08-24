@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+  Fixture: druhý slug téhož watchlist produktu.
+  Scénář: slévání víc slugů do jednoho produktu + dedup napříč slugy
+  (řádek Lidl 14,90 / 1 kg je záměrně shodný s fixtures/cibule.html).
+-->
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Cibule červená v akci levně | Kupi.cz</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Cibule červená",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": 12.9,
+    "highPrice": 14.9,
+    "priceCurrency": "CZK",
+    "offerCount": 2,
+    "offers": [
+      { "@type": "Offer", "offeredBy": "Lidl", "price": 14.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-30" },
+      { "@type": "Offer", "offeredBy": "Albert", "price": 12.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-30" }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+<h1>Cibule červená</h1>
+<div class="relative product_discounts product_discounts_overview">
+<div class="wide discounts_table">
+
+  <div class="discount_row log_discount only_discount " data-position="1" data-product="2211" data-discount="10780011" data-key="1-kg" data-shop="6" id="discount_10780011">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Lidl</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">14,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div><div class="discount_percentage">–25&nbsp;%</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">platí do neděle 30. 8.</div></div>
+    </div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="2" data-product="2211" data-discount="10780020" data-key="1-kg" data-shop="3" id="discount_10780020">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Albert</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">12,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">platí do neděle 30. 8.</div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>

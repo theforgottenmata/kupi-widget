@@ -1,0 +1,80 @@
+<!doctype html>
+<!--
+  Fixture: /sleva/cibule (stav 24. 8. 2026)
+  Scénář: jedna stránka míchá VÍC jednotek (data-key 1-kg i 0.5-kg).
+  maxPrice se smí aplikovat jen na shodný unitKey.
+-->
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Cibule kuchyňská žlutá v akci levně | Kupi.cz</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Cibule kuchyňská žlutá",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": 9.9,
+    "highPrice": 19.9,
+    "priceCurrency": "CZK",
+    "offerCount": 3,
+    "offers": [
+      { "@type": "Offer", "offeredBy": "Penny Market", "price": 9.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-26" },
+      { "@type": "Offer", "offeredBy": "Lidl", "price": 14.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-30" },
+      { "@type": "Offer", "offeredBy": "Kaufland", "price": 19.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-30" }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+<h1>Cibule kuchyňská žlutá</h1>
+<div class="relative product_discounts product_discounts_overview">
+<div class="wide discounts_table">
+
+  <!-- půlkilové balení: 9,90 Kč je pod maxPrice 15, ale JINÁ jednotka -->
+  <div class="discount_row log_discount only_discount " data-position="1" data-product="2210" data-discount="10780010" data-key="0.5-kg" data-shop="7" id="discount_10780010">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Penny Market</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">9,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 0,5 kg</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">platí do středy 26. 8.</div></div>
+    </div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="2" data-product="2210" data-discount="10780011" data-key="1-kg" data-shop="6" id="discount_10780011">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Lidl</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">14,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div><div class="discount_percentage">–25&nbsp;%</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">platí do neděle 30. 8.</div></div>
+    </div>
+  </div>
+
+  <!-- 19,90 / 1 kg je nad maxPrice 15 se SHODNOU jednotkou -> musí vypadnout -->
+  <div class="discount_row log_discount only_discount " data-position="3" data-product="2210" data-discount="10780012" data-key="1-kg" data-shop="2" id="discount_10780012">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Kaufland</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">19,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">platí do neděle 30. 8.</div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>

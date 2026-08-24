@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Kuřecí prsa",
+    "slugs": ["kureci-prsni-rizky"],
+    "unitKey": "1-kg",
+    "maxPrice": 140
+  },
+  {
+    "name": "Kuřecí stehna",
+    "slugs": ["kureci-stehna"],
+    "unitKey": "1-kg"
+  },
+  {
+    "name": "Mleté maso",
+    "slugs": ["mlete-maso"]
+  },
+  {
+    "name": "Vepřová krkovice",
+    "slugs": ["veprova-krkovice"]
+  },
+  {
+    "name": "Máslo",
+    "slugs": ["maslo"],
+    "unitKey": "250-g",
+    "maxPrice": 45
+  },
+  {
+    "name": "Vejce",
+    "slugs": ["vejce-m"]
+  },
+  {
+    "name": "Bílý jogurt",
+    "slugs": ["bily-jogurt"]
+  },
+  {
+    "name": "Smetana ke šlehání",
+    "slugs": ["smetana-ke-slehani"]
+  },
+  {
+    "name": "Káva",
+    "slugs": ["mleta-kava", "zrnkova-kava-lavazza"]
+  },
+  {
+    "name": "Rýže",
+    "slugs": ["ryze", "ryze-basmati", "ryze-dlouhozrnna"]
+  },
+  {
+    "name": "Těstoviny",
+    "slugs": ["testoviny"]
+  },
+  {
+    "name": "Olivový olej",
+    "slugs": ["olivovy-olej-extra-panensky"]
+  },
+  {
+    "name": "Banány",
+    "slugs": ["banany"],
+    "unitKey": "1-kg"
+  },
+  {
+    "name": "Cibule",
+    "slugs": ["cibule"],
+    "unitKey": "1-kg"
+  },
+  {
+    "name": "Mrkev",
+    "slugs": ["mrkev"],
+    "unitKey": "1-kg"
+  },
+  {
+    "name": "Brambory",
+    "slugs": ["brambory"],
+    "unitKey": "1-kg"
+  },
+  {
+    "name": "Toaletní papír",
+    "slugs": ["toaletni-papir"]
+  }
+]

@@ -1,0 +1,23 @@
+<!doctype html>
+<!--
+  Fixture: /sleva/{slug}, které NENÍ detail produktu.
+  Kupi má pod stejnou cestou i kategorie — vrací HTTP 200, ale bez Product JSON-LD
+  a bez .discount_row. Tohle musí skončit chybou, ne tichou nulou.
+-->
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Vejce levně | Kupi.cz</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": []
+}
+</script>
+</head>
+<body>
+<h1>Vejce</h1>
+<div class="category_listing"></div>
+</body>
+</html>

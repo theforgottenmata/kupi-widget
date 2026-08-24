@@ -1,0 +1,24 @@
+{
+  "name": "kupi-widget",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Denní scraper akcí z Kupi.cz do statického deals.json pro widget na iPhonu",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "generate": "node --experimental-strip-types src/generate.ts",
+    "dry": "node --experimental-strip-types src/generate.ts --dry",
+    "fixtures": "node --experimental-strip-types src/generate.ts --fixtures --dry",
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

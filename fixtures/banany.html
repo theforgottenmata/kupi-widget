@@ -1,0 +1,119 @@
+<!doctype html>
+<!--
+  Fixture: /sleva/banany (stav 24. 8. 2026)
+  Scénáře: 6 nabídek, JSON-LD jen 4 (nepokrývá poslední dvě),
+           relativní validita "dnes končí", mix active + upcoming.
+-->
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Banány v akci levně | Kupi.cz</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Banány",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": 19.9,
+    "highPrice": 29.9,
+    "priceCurrency": "CZK",
+    "offerCount": 4,
+    "offers": [
+      { "@type": "Offer", "offeredBy": "Kaufland", "price": 19.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-24" },
+      { "@type": "Offer", "offeredBy": "Albert", "price": 22.9, "priceCurrency": "CZK", "priceValidUntil": "2026-09-01" },
+      { "@type": "Offer", "offeredBy": "Billa", "price": 24.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-24" },
+      { "@type": "Offer", "offeredBy": "Tesco", "price": 25.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-24" }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+<h1>Banány</h1>
+<div class="relative product_discounts product_discounts_overview">
+<div class="wide discounts_table">
+
+  <div class="discount_row log_discount only_discount " data-position="1" data-product="1120" data-discount="10770001" data-key="1-kg" data-shop="2" id="discount_10770001">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Kaufland</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">19,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div><div class="discount_percentage">–33&nbsp;%</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">dnes končí</div></div>
+    </div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="2" data-product="1120" data-discount="10805900" data-key="1-kg" data-shop="3" id="discount_10805900">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Albert</span></div></div>
+      <div class="discounts_price price_future_discount">
+        <div class="price_wrap">
+          <strong class="discount_price_value">22,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div><div class="discount_percentage">–23&nbsp;%</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">st 26. 8. – út 1. 9.</div></div>
+    </div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="3" data-product="1120" data-discount="10770002" data-key="1-kg" data-shop="4" id="discount_10770002">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Billa</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">24,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">dnes končí</div></div>
+    </div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="4" data-product="1120" data-discount="10770003" data-key="1-kg" data-shop="5" id="discount_10770003">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Tesco</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">25,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">dnes končí</div></div>
+    </div>
+  </div>
+
+  <!-- Následující dva řádky NEJSOU v JSON-LD — musí přesto projít do výstupu. -->
+  <div class="discount_row log_discount only_discount " data-position="5" data-product="1120" data-discount="10770004" data-key="1-kg" data-shop="21" id="discount_10770004">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Hruška</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">27,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">platí do neděle 30. 8.</div></div>
+    </div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="6" data-product="1120" data-discount="10770005" data-key="1-kg" data-shop="22" id="discount_10770005">
+    <div class="flex">
+      <div class="discounts_shop_wrap"><div class="discounts_shop_info"><span class="discounts_shop_name">Globus</span></div></div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <strong class="discount_price_value">29,90&nbsp;Kč</strong>
+          <div class="amount_percentage"><div class="discount_amount">/ 1 kg</div></div>
+        </div>
+      </div>
+      <div class="discounts_list_add"><div class="discounts_validity">zcela nový formát validity</div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>

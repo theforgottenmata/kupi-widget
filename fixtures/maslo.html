@@ -1,0 +1,181 @@
+<!doctype html>
+<!--
+  Fixture: /sleva/maslo (stav 24. 8. 2026)
+  Scénáře: 5 nabídek ve DVOU blocích .discounts_table,
+           JSON-LD má jen 4 offers (nepokrývá duplicitní řádek Albert 19,90),
+           dva identické řádky Albert -> dedup,
+           "zítra končí", poznámky v .discount_note.
+-->
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Máslo v akci levně | Kupi.cz</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Máslo",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": 17.9,
+    "highPrice": 36.9,
+    "priceCurrency": "CZK",
+    "offerCount": 4,
+    "offers": [
+      { "@type": "Offer", "offeredBy": "Albert", "price": 19.9, "priceCurrency": "CZK", "priceValidUntil": "2026-09-01" },
+      { "@type": "Offer", "offeredBy": "Lidl", "price": 17.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-30" },
+      { "@type": "Offer", "offeredBy": "Albert", "price": 24.9, "priceCurrency": "CZK", "priceValidUntil": "2026-09-01" },
+      { "@type": "Offer", "offeredBy": "Hruška", "price": 36.9, "priceCurrency": "CZK", "priceValidUntil": "2026-08-25" }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+<h1>Máslo</h1>
+
+<div class="group_discounts detail_discounts">
+
+<div class="promo_discounts recommended_discounts">
+<div class="relative product_discounts product_discounts_overview">
+<div class="wide discounts_table">
+
+  <div class="discount_row log_discount only_discount " data-position="1" data-product="6905" data-discount="10805511" data-key="250-g" data-show="true" data-shop="3" data-sponzored="false" data-highlight="true" id="discount_10805511">
+    <div class="flex">
+      <div class="discounts_shop_wrap">
+        <div class="discounts_shop_info">
+          <span class="discounts_shop_name"><a class="product_link_history">Albert</a></span>
+          <div class="discounts_markets"><a class="product_link_history">41 nejbližších poboček</a></div>
+        </div>
+      </div>
+      <div class="discounts_price price_future_discount">
+        <div class="price_wrap">
+          <span class="discount_price_label">cena</span>
+          <strong class="discount_price_value">19,90&nbsp;Kč</strong>
+          <div class="amount_percentage">
+            <div class="discount_amount">/ 250 g</div>
+            <div class="discount_percentage">–50&nbsp;%</div>
+          </div>
+        </div>
+        <span class="price_per_unit">79,60&nbsp;Kč / 1 kg</span>
+      </div>
+      <div class="discounts_list_add">
+        <div class="discounts_validity">st 26. 8. – út 1. 9.</div>
+      </div>
+    </div>
+    <div class="discount_note"><span>max 12 ks/osoba/den, platí pouze s mobilní aplikací</span></div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<div class="relative product_discounts product_discounts_overview">
+<div class="wide discounts_table">
+
+  <div class="discount_row log_discount only_discount " data-position="2" data-product="6905" data-discount="10804220" data-key="250-g" data-show="true" data-shop="6" data-sponzored="false" data-highlight="false" id="discount_10804220">
+    <div class="flex">
+      <div class="discounts_shop_wrap">
+        <div class="discounts_shop_info">
+          <span class="discounts_shop_name"><a class="product_link_history">Lidl</a></span>
+          <div class="discounts_markets"><a class="product_link_history">64 nejbližších poboček</a></div>
+        </div>
+      </div>
+      <div class="discounts_price price_future_discount">
+        <div class="price_wrap">
+          <span class="discount_price_label">cena</span>
+          <strong class="discount_price_value">17,90&nbsp;Kč</strong>
+          <div class="amount_percentage">
+            <div class="discount_amount">/ 250 g</div>
+          </div>
+        </div>
+        <span class="price_per_unit">71,60&nbsp;Kč / 1 kg</span>
+      </div>
+      <div class="discounts_list_add">
+        <div class="discounts_validity">čt 27. 8. – ne 30. 8.</div>
+      </div>
+    </div>
+    <div class="discount_note"><span>max 5 ks/osoba/den</span></div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="3" data-product="6905" data-discount="10805512" data-key="250-g" data-show="true" data-shop="3" data-sponzored="false" data-highlight="false" id="discount_10805512">
+    <div class="flex">
+      <div class="discounts_shop_wrap">
+        <div class="discounts_shop_info">
+          <span class="discounts_shop_name"><a class="product_link_history">Albert</a></span>
+          <div class="discounts_markets"><a class="product_link_history">41 nejbližších poboček</a></div>
+        </div>
+      </div>
+      <div class="discounts_price price_future_discount">
+        <div class="price_wrap">
+          <span class="discount_price_label">cena</span>
+          <strong class="discount_price_value">19,90&nbsp;Kč</strong>
+          <div class="amount_percentage">
+            <div class="discount_amount">/ 250 g</div>
+            <div class="discount_percentage">–50&nbsp;%</div>
+          </div>
+        </div>
+        <span class="price_per_unit">79,60&nbsp;Kč / 1 kg</span>
+      </div>
+      <div class="discounts_list_add">
+        <div class="discounts_validity">st 26. 8. – út 1. 9.</div>
+      </div>
+    </div>
+    <div class="discount_note"><span>max 12 ks/osoba/den, platí pouze s mobilní aplikací</span></div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="4" data-product="6905" data-discount="10805513" data-key="250-g" data-show="true" data-shop="3" data-sponzored="false" data-highlight="false" id="discount_10805513">
+    <div class="flex">
+      <div class="discounts_shop_wrap">
+        <div class="discounts_shop_info">
+          <span class="discounts_shop_name"><a class="product_link_history">Albert</a></span>
+          <div class="discounts_markets"><a class="product_link_history">41 nejbližších poboček</a></div>
+        </div>
+      </div>
+      <div class="discounts_price price_future_discount">
+        <div class="price_wrap">
+          <span class="discount_price_label">cena</span>
+          <strong class="discount_price_value">24,90&nbsp;Kč</strong>
+          <div class="amount_percentage">
+            <div class="discount_amount">/ 250 g</div>
+            <div class="discount_percentage">–37&nbsp;%</div>
+          </div>
+        </div>
+        <span class="price_per_unit">99,60&nbsp;Kč / 1 kg</span>
+      </div>
+      <div class="discounts_list_add">
+        <div class="discounts_validity">st 26. 8. – út 1. 9.</div>
+      </div>
+    </div>
+    <div class="discount_note"><span>max 12 ks/osoba/den</span></div>
+  </div>
+
+  <div class="discount_row log_discount only_discount " data-position="5" data-product="6905" data-discount="10788044" data-key="250-g" data-show="true" data-shop="21" data-sponzored="false" data-highlight="false" id="discount_10788044">
+    <div class="flex">
+      <div class="discounts_shop_wrap">
+        <div class="discounts_shop_info">
+          <span class="discounts_shop_name"><a class="product_link_history">Hruška</a></span>
+          <div class="discounts_markets"><a class="product_link_history">12 nejbližších poboček</a></div>
+        </div>
+      </div>
+      <div class="discounts_price">
+        <div class="price_wrap">
+          <span class="discount_price_label">cena</span>
+          <strong class="discount_price_value">36,90&nbsp;Kč</strong>
+          <div class="amount_percentage">
+            <div class="discount_amount">/ 250 g</div>
+          </div>
+        </div>
+        <span class="price_per_unit">147,60&nbsp;Kč / 1 kg</span>
+      </div>
+      <div class="discounts_list_add">
+        <div class="discounts_validity">zítra končí</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+</body>
+</html>

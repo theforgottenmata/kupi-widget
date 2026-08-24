@@ -10,6 +10,7 @@ const deal = (index: number): Deal => ({
   status: 'active',
   priceLabel: '10,00 Kč',
   validLabel: 'platí nyní',
+  rangeLabel: 'termín neuveden',
   best: true,
   price: 10,
 });

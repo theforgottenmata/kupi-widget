@@ -5,14 +5,7 @@
  * žije tady. Widget pak jen vykresluje řetězce.
  */
 
-import {
-  addDays,
-  diffDays,
-  parseValidity,
-  shortCzechDate,
-  weekdayGenitive,
-  type IsoDate,
-} from './dates.ts';
+import { addDays, diffDays, parseValidity, weekdayWithDate, type IsoDate } from './dates.ts';
 import type { Deal, DealStatus, LdOffer, RawOffer, WatchedProduct } from './types.ts';
 
 /**
@@ -50,9 +43,10 @@ export function priceLabel(price: number, unit?: string): string {
 }
 
 /**
- * "do čtvrtka" / "dnes končí" / "od pátku" / "od 28. 8."
- * Do sedmi dnů používáme název dne, dál konkrétní datum — ať je to ve widgetu
- * krátké, ale nikdy dvojznačné.
+ * Krátký popisek pro widget na ploše. Naléhavost má přednost před datem:
+ * "dnes končí" řekne víc než "do po 24. 8.".
+ *
+ *   "dnes končí" / "zítra končí" / "do st 26. 8." / "od pá 28. 8."
  */
 export function validLabel(
   status: DealStatus,
@@ -65,16 +59,29 @@ export function validLabel(
     const days = diffDays(today, validFrom);
     if (days <= 0) return 'od dneška';
     if (days === 1) return 'od zítřka';
-    if (days <= 7) return `od ${weekdayGenitive(validFrom)}`;
-    return `od ${shortCzechDate(validFrom)}`;
+    return `od ${weekdayWithDate(validFrom)}`;
   }
 
   if (!validTo) return 'platí nyní';
   const days = diffDays(today, validTo);
   if (days <= 0) return 'dnes končí';
   if (days === 1) return 'zítra končí';
-  if (days <= 7) return `do ${weekdayGenitive(validTo)}`;
-  return `do ${shortCzechDate(validTo)}`;
+  return `do ${weekdayWithDate(validTo)}`;
+}
+
+/**
+ * Úplný termín pro detailní seznam, kde je místo. Čistě faktický, bez
+ * relativních formulací:
+ *
+ *   "pá 28. 8. – ne 30. 8." / "do st 26. 8." / "od pá 28. 8."
+ *
+ * U aktivních akcí zná Kupi jen konec platnosti, začátek proto většinou chybí.
+ */
+export function rangeLabel(validFrom?: IsoDate, validTo?: IsoDate): string {
+  if (validFrom && validTo) return `${weekdayWithDate(validFrom)} – ${weekdayWithDate(validTo)}`;
+  if (validTo) return `do ${weekdayWithDate(validTo)}`;
+  if (validFrom) return `od ${weekdayWithDate(validFrom)}`;
+  return 'termín neuveden';
 }
 
 function dedupeKey(deal: Deal): string {
@@ -119,6 +126,7 @@ export function normalizeProduct({ product, offers, ldOffers, today }: Normalize
       status,
       priceLabel: priceLabel(offer.price, offer.unit),
       validLabel: validLabel(status, today, validFrom, validTo),
+      rangeLabel: rangeLabel(validFrom, validTo),
       best: false, // doplní markBest() až nad kompletním seznamem
       price: offer.price,
       unit: offer.unit,

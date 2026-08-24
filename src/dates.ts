@@ -127,18 +127,16 @@ export function parseValidity(text: string | undefined, today: IsoDate): ParsedV
   return { validFrom, validTo, recognized: true };
 }
 
-const WEEKDAY_GENITIVE = [
-  'neděle', // 0
-  'pondělí',
-  'úterý',
-  'středy',
-  'čtvrtka',
-  'pátku',
-  'soboty',
-];
+const WEEKDAY_SHORT = ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so'];
 
-export function weekdayGenitive(date: IsoDate): string {
-  return WEEKDAY_GENITIVE[new Date(toUtc(date)).getUTCDay()];
+/** "st" — stejné zkratky, jaké používá Kupi ve svých termínech. */
+export function weekdayShort(date: IsoDate): string {
+  return WEEKDAY_SHORT[new Date(toUtc(date)).getUTCDay()];
+}
+
+/** "st 26. 8." */
+export function weekdayWithDate(date: IsoDate): string {
+  return `${weekdayShort(date)} ${shortCzechDate(date)}`;
 }
 
 /** "28. 8." */

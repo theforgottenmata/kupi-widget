@@ -1,7 +1,15 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { addDays, diffDays, parseValidity, resolveYear, shortCzechDate, weekdayGenitive } from '../src/dates.ts';
+import {
+  addDays,
+  diffDays,
+  parseValidity,
+  resolveYear,
+  shortCzechDate,
+  weekdayShort,
+  weekdayWithDate,
+} from '../src/dates.ts';
 
 const TODAY = '2026-08-24'; // pondělí
 
@@ -82,10 +90,16 @@ describe('pomocné funkce', () => {
     assert.equal(addDays('2026-10-24', 3), '2026-10-27');
   });
 
-  it('weekdayGenitive vrací český 2. pád', () => {
-    assert.equal(weekdayGenitive('2026-08-26'), 'středy');
-    assert.equal(weekdayGenitive('2026-08-28'), 'pátku');
-    assert.equal(weekdayGenitive('2026-08-30'), 'neděle');
+  it('weekdayShort používá stejné zkratky jako Kupi', () => {
+    assert.equal(weekdayShort('2026-08-24'), 'po');
+    assert.equal(weekdayShort('2026-08-26'), 'st');
+    assert.equal(weekdayShort('2026-08-28'), 'pá');
+    assert.equal(weekdayShort('2026-08-30'), 'ne');
+  });
+
+  it('weekdayWithDate spojí den a datum', () => {
+    assert.equal(weekdayWithDate('2026-08-28'), 'pá 28. 8.');
+    assert.equal(weekdayWithDate('2026-09-01'), 'út 1. 9.');
   });
 
   it('shortCzechDate', () => {

@@ -59,8 +59,10 @@ export interface Deal {
 
   /** Hotový text pro widget, např. "99,90 Kč / 1 kg". */
   priceLabel: string;
-  /** Hotový text pro widget, např. "do čtvrtka" / "od pátku" / "dnes končí". */
+  /** Krátký text pro widget na ploše: "dnes končí" / "do st 26. 8." / "od pá 28. 8.". */
   validLabel: string;
+  /** Úplný termín pro detailní seznam: "pá 28. 8. – ne 30. 8." / "do st 26. 8.". */
+  rangeLabel: string;
   /**
    * Nejlevnější nabídka daného produktu v dané skupině (active/upcoming).
    * Widget defaultně zobrazuje jen tyhle, aby jeden produkt s deseti

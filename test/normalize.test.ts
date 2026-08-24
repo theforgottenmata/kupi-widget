@@ -4,7 +4,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
 
-import { markBest, normalizeProduct, pairWithLd, priceLabel, validLabel } from '../src/normalize.ts';
+import {
+  markBest,
+  normalizeProduct,
+  pairWithLd,
+  priceLabel,
+  rangeLabel,
+  validLabel,
+} from '../src/normalize.ts';
 import { parseProductPage } from '../src/parse.ts';
 import type { LdOffer, RawOffer, WatchedProduct } from '../src/types.ts';
 
@@ -61,18 +68,25 @@ describe('formátování pro widget', () => {
     assert.equal(priceLabel(17.9, undefined), '17,90 Kč');
   });
 
-  it('validLabel pro aktivní akce', () => {
+  it('validLabel pro aktivní akce dává přednost naléhavosti', () => {
     assert.equal(validLabel('active', TODAY, undefined, '2026-08-24'), 'dnes končí');
     assert.equal(validLabel('active', TODAY, undefined, '2026-08-25'), 'zítra končí');
-    assert.equal(validLabel('active', TODAY, undefined, '2026-08-26'), 'do středy');
-    assert.equal(validLabel('active', TODAY, undefined, '2026-09-10'), 'do 10. 9.');
+    assert.equal(validLabel('active', TODAY, undefined, '2026-08-26'), 'do st 26. 8.');
+    assert.equal(validLabel('active', TODAY, undefined, '2026-09-10'), 'do čt 10. 9.');
     assert.equal(validLabel('active', TODAY, undefined, undefined), 'platí nyní');
   });
 
   it('validLabel pro připravované akce', () => {
     assert.equal(validLabel('upcoming', TODAY, '2026-08-25'), 'od zítřka');
-    assert.equal(validLabel('upcoming', TODAY, '2026-08-28'), 'od pátku');
-    assert.equal(validLabel('upcoming', TODAY, '2026-09-15'), 'od 15. 9.');
+    assert.equal(validLabel('upcoming', TODAY, '2026-08-28'), 'od pá 28. 8.');
+    assert.equal(validLabel('upcoming', TODAY, '2026-09-15'), 'od út 15. 9.');
+  });
+
+  it('rangeLabel je čistě faktický termín', () => {
+    assert.equal(rangeLabel('2026-08-28', '2026-08-30'), 'pá 28. 8. – ne 30. 8.');
+    assert.equal(rangeLabel(undefined, '2026-08-26'), 'do st 26. 8.');
+    assert.equal(rangeLabel('2026-08-28', undefined), 'od pá 28. 8.');
+    assert.equal(rangeLabel(undefined, undefined), 'termín neuveden');
   });
 });
 
@@ -93,14 +107,15 @@ describe('SCÉNÁŘ 4: kureci-prsni-rizky end-to-end', () => {
     assert.equal(upcoming.validFrom, '2026-08-28');
     assert.equal(upcoming.validTo, '2026-08-30'); // z JSON-LD
     assert.equal(upcoming.priceLabel, '99,90 Kč / 1 kg');
-    assert.equal(upcoming.validLabel, 'od pátku');
+    assert.equal(upcoming.validLabel, 'od pá 28. 8.');
+    assert.equal(upcoming.rangeLabel, 'pá 28. 8. – ne 30. 8.');
     assert.equal(upcoming.discountPercent, 54);
   });
 
   it('aktivní akce mají popisek podle dne v týdnu', () => {
     assert.deepEqual(
       deals.filter((deal) => deal.status === 'active').map((deal) => deal.validLabel),
-      ['do středy', 'do neděle'],
+      ['do st 26. 8.', 'do ne 30. 8.'],
     );
   });
 });

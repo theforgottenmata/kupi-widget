@@ -2,11 +2,17 @@ name: Aktualizace akcí
 
 on:
   # 04:00 UTC = 06:00 Praha v létě, 05:00 v zimě. DST záměrně neřešíme.
-  # GitHub Actions cron se běžně zpozdí o 5–30 minut, což u denních dat nevadí.
+  # Cron se běžně zpozdí o 5–30 minut, což u denních dat nevadí.
+  # Když je Mac vypnutý, job počká ve frontě na runner.
   schedule:
     - cron: '0 4 * * *'
   # Ruční spuštění při vývoji a ladění.
   workflow_dispatch:
+
+# POZOR: repozitář je veřejný a job běží na self-hosted runneru, tedy
+# na skutečném Macu. Proto tu ZÁMĚRNĚ není trigger `pull_request` —
+# bez něj nemůže cizí fork spustit kód na tvém stroji.
+# Nový trigger sem nepřidávej, dokud si nerozmyslíš, kdo ho může vyvolat.
 
 # Bez tohohle skončí commit z Action na 403.
 permissions:
@@ -18,7 +24,10 @@ concurrency:
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    # Kupi je za Cloudflare a na datacentrové IP (GitHub hosted runnery běží
+    # na Azure) pouští managed challenge -> HTTP 403 na všechno.
+    # Z domácí IP projde běžný request bez problémů, proto self-hosted runner.
+    runs-on: [self-hosted, macOS]
     timeout-minutes: 15
 
     steps:

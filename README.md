@@ -7,14 +7,36 @@ statický `deals.json` a ten pak čte widget na ploše iPhonu.
 
 ```
 watchlist.json
-  → GitHub Actions (cron 1× denně)
+  → GitHub Actions cron 1× denně (self-hosted runner na Macu)
   → scrape kupi.cz/sleva/{slug}
   → parse HTML + JSON-LD
   → normalizace, filtrování, formátování
   → deals.json  (git commit = historie cen zdarma)
-  → GitHub Pages
+  → raw.githubusercontent.com
   → Scriptable widget
 ```
+
+## Proč self-hosted runner
+
+Kupi.cz je za Cloudflare. Na requesty z datacentrových IP — a GitHub hosted
+runnery běží na Azure — pouští **managed challenge**, takže scraper dostane
+HTTP 403 na úplně všechno:
+
+```
+server: cloudflare
+cf-mitigated: challenge
+cf-ray: ...-ORD
+```
+
+Lepší hlavičky s tím nic neudělají, protože nejde o kontrolu `user-agent`.
+Z domácí IP přitom projde i obyčejný `curl`. Job proto běží na self-hosted
+runneru na Macu; všechno ostatní zůstalo stejné.
+
+**Bezpečnost:** repozitář je veřejný a job běží na skutečném stroji, proto
+workflow záměrně nemá trigger `pull_request` — cizí fork tak nemá jak spustit
+kód na tvém Macu. Navíc nastav Settings → Actions → General →
+*Fork pull request workflows from outside collaborators* →
+**Require approval for all outside collaborators**.
 
 ## Zprovoznění
 
@@ -25,23 +47,34 @@ watchlist.json
    gh repo create kupi-widget --public --source=. --push
    ```
 
-2. **GitHub Pages** — Settings → Pages → Source: *Deploy from a branch*,
-   branch `main`, folder `/ (root)`. `deals.json` bude na:
+2. **Self-hosted runner** — Settings → Actions → Runners → *New self-hosted
+   runner* → macOS / ARM64 a projdi příkazy, které tam GitHub vypíše.
+   Pak runner spusť jako službu, ať přežije restart:
 
-   ```
-   https://<user>.github.io/kupi-widget/deals.json
+   ```bash
+   ./svc.sh install
+   ./svc.sh start
    ```
 
-   Alternativa bez Pages (má ~5 min CDN cache):
-   `https://raw.githubusercontent.com/<user>/kupi-widget/main/deals.json`
+   Služba běží jako LaunchAgent pod tvým uživatelem, takže se nastartuje
+   po přihlášení. Když je Mac vypnutý nebo uspaný, job počká ve frontě
+   a doběhne, jakmile se runner ozve.
 
 3. **První běh** — Actions → *Aktualizace akcí* → Run workflow.
    Zkontroluj, že commitnul rozumný `deals.json`.
 
 4. **Widget** — nainstaluj [Scriptable](https://apps.apple.com/us/app/scriptable/id1405459188),
-   vytvoř skript, vlož `widget/widget.js`, přepiš `DEALS_URL`.
+   vytvoř skript, vlož `widget/widget.js` a zkontroluj `DEALS_URL`:
+
+   ```
+   https://raw.githubusercontent.com/<user>/kupi-widget/main/deals.json
+   ```
+
    Na ploše: přidat widget → Scriptable → Script: tvůj skript,
    When Interacting: *Run Script*.
+
+   GitHub Pages není potřeba. `raw.githubusercontent.com` má ~5 min CDN cache,
+   což u dat měněných jednou denně nehraje roli.
 
 ## Watchlist
 

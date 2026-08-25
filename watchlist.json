@@ -2,12 +2,6 @@
   {
     "name": "Kuřecí prsa",
     "slugs": ["kureci-prsni-rizky"],
-    "unitKey": "1-kg",
-    "maxPrice": 140
-  },
-  {
-    "name": "Kuřecí stehna",
-    "slugs": ["kureci-stehna"],
     "unitKey": "1-kg"
   },
   {
@@ -15,46 +9,59 @@
     "slugs": ["mlete-maso"]
   },
   {
-    "name": "Vepřová krkovice",
-    "slugs": ["veprova-krkovice"]
+    "name": "Vepřová panenka",
+    "slugs": ["veprova-panenka"]
+  },
+  {
+    "name": "Šunka nejvyšší jakosti",
+    "slugs": ["sunka-nejvyssi-jakosti"]
+  },
+  {
+    "name": "Losos",
+    "slugs": ["losos"]
   },
   {
     "name": "Máslo",
     "slugs": ["maslo"],
-    "unitKey": "250-g",
-    "maxPrice": 45
+    "unitKey": "250-g"
   },
   {
     "name": "Vejce",
     "slugs": ["vejce-m"]
   },
   {
-    "name": "Bílý jogurt",
-    "slugs": ["bily-jogurt"]
+    "name": "Mozzarella",
+    "slugs": ["mozzarella"]
   },
   {
-    "name": "Smetana ke šlehání",
-    "slugs": ["smetana-ke-slehani"]
+    "name": "Bezlaktózové trvanlivé mléko",
+    "slugs": [
+      "mleko-trvanlive-bez-laktozy-1-5-polotucne-free-from-pilos",
+      "mleko-trvanlive-bez-laktozy-tesco-free-from-15-polotucne",
+      "mleko-trvanlive-bez-laktozy-boni-15-polotucne",
+      "mleko-trvanlive-bez-laktozy-tami-15-polotucne",
+      "mleko-trvanlive-bez-laktozy-meggle-15-polotucne",
+      "mleko-trvanlive-bez-laktozy-pragolaktos-15-polotucne",
+      "mleko-trvanlive-bez-laktozy-free-from-natures-promise-15-polotucne",
+      "mleko-trvanlive-bez-laktozy-laktose-free-15-polotucne"
+    ]
   },
   {
-    "name": "Káva",
-    "slugs": ["mleta-kava", "zrnkova-kava-lavazza"]
-  },
-  {
-    "name": "Rýže",
-    "slugs": ["ryze", "ryze-basmati", "ryze-dlouhozrnna"]
-  },
-  {
-    "name": "Těstoviny",
-    "slugs": ["testoviny"]
-  },
-  {
-    "name": "Olivový olej",
-    "slugs": ["olivovy-olej-extra-panensky"]
+    "name": "Ovesné vločky",
+    "slugs": ["ovesne-vlocky"]
   },
   {
     "name": "Banány",
     "slugs": ["banany"],
+    "unitKey": "1-kg"
+  },
+  {
+    "name": "Avokádo",
+    "slugs": ["avokado"]
+  },
+  {
+    "name": "Rajčata",
+    "slugs": ["rajcata"],
     "unitKey": "1-kg"
   },
   {
@@ -63,9 +70,8 @@
     "unitKey": "1-kg"
   },
   {
-    "name": "Mrkev",
-    "slugs": ["mrkev"],
-    "unitKey": "1-kg"
+    "name": "Česnek",
+    "slugs": ["cesnek"]
   },
   {
     "name": "Brambory",
@@ -73,7 +79,39 @@
     "unitKey": "1-kg"
   },
   {
-    "name": "Toaletní papír",
-    "slugs": ["toaletni-papir"]
+    "name": "Koriandr",
+    "slugs": ["koriandr-cerstvy"]
+  },
+  {
+    "name": "Mražená kukuřice",
+    "slugs": ["kukurice-mrazena"]
+  },
+  {
+    "name": "Mražené jahody",
+    "slugs": ["mrazene-jahody"]
+  },
+  {
+    "name": "Coca-Cola Zero",
+    "slugs": ["coca-cola-zero"]
+  },
+  {
+    "name": "Pepsi Max",
+    "slugs": ["limonada-bez-kalorii-max-pepsi"]
+  },
+  {
+    "name": "Sprite Zero",
+    "slugs": ["limonada-sprite-zero"]
+  },
+  {
+    "name": "Fanta Zero",
+    "slugs": ["limonada-fanta-zero"]
+  },
+  {
+    "name": "Kofola bez cukru",
+    "slugs": ["kofola-bez-cukru"]
+  },
+  {
+    "name": "Cola bez cukru (privátní značky)",
+    "slugs": ["limonada-bez-cukru-cola"]
   }
 ]

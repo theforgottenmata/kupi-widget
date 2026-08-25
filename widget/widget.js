@@ -87,6 +87,17 @@ function addDealRow(widget, deal) {
   price.textColor = COLOR.price;
   price.lineLimit = 1;
 
+  // Cena za litr / kilo — jen když říká něco navíc proti ceně balení.
+  if (deal.unitPriceLabel) {
+    const unitRow = widget.addStack();
+    unitRow.layoutHorizontally();
+    unitRow.addSpacer();
+    const unitPrice = unitRow.addText(deal.unitPriceLabel);
+    unitPrice.font = Font.systemFont(10);
+    unitPrice.textColor = COLOR.detail;
+    unitPrice.lineLimit = 1;
+  }
+
   const bottom = widget.addStack();
   bottom.layoutHorizontally();
 
@@ -188,7 +199,10 @@ function renderDeal(deal) {
     <div class="deal${deal.best ? ' best' : ''}">
       <div class="line">
         <span class="store">${escapeHtml(deal.store)}</span>
-        <span class="price">${escapeHtml(deal.priceLabel)}</span>
+        <span class="prices">
+          <span class="price">${escapeHtml(deal.priceLabel)}</span>
+          ${deal.unitPriceLabel ? `<span class="unit">${escapeHtml(deal.unitPriceLabel)}</span>` : ''}
+        </span>
       </div>
       <div class="line sub">
         <span class="range">${escapeHtml(deal.rangeLabel || deal.validLabel)}</span>
@@ -295,7 +309,9 @@ function renderHtml(data) {
   }
   .line { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
   .store { font-size: 15px; }
+  .prices { display: flex; flex-direction: column; align-items: flex-end; }
   .price { font-size: 15px; font-weight: 600; color: var(--price); white-space: nowrap; }
+  .unit { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .sub { margin-top: 2px; }
   .range { font-size: 13px; color: var(--muted); }
   .pct {

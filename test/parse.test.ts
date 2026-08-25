@@ -46,6 +46,7 @@ describe('SCÉNÁŘ 1+4: kureci-prsni-rizky', () => {
       unit: '1 kg',
       unitKey: '1-kg',
       discountPercent: 54,
+      unitPriceText: '99,90 Kč / 1 kg',
       validityText: 'pá 28. 8. – ne 30. 8.',
       note: undefined,
       future: true,

@@ -157,6 +157,7 @@ export function parseProductPage(html: string): ParsedPage {
       unit: parseUnit(textOf($, row, '.discount_amount')),
       unitKey: row.attr('data-key')?.trim() || undefined,
       discountPercent: parsePercent(textOf($, row, '.discount_percentage')),
+      unitPriceText: textOf($, row, '.price_per_unit'),
       validityText: textOf($, row, '.discounts_validity'),
       note: textOf($, row, '.discount_note'),
       future: row.find('.discounts_price').first().hasClass('price_future_discount'),

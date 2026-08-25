@@ -8,6 +8,7 @@ import {
   markBest,
   normalizeProduct,
   pairWithLd,
+  parseUnitPrice,
   priceLabel,
   rangeLabel,
   validLabel,
@@ -87,6 +88,54 @@ describe('formátování pro widget', () => {
     assert.equal(rangeLabel(undefined, '2026-08-26'), 'do st 26. 8.');
     assert.equal(rangeLabel('2026-08-28', undefined), 'od pá 28. 8.');
     assert.equal(rangeLabel(undefined, undefined), 'termín neuveden');
+  });
+});
+
+describe('cena přepočtená na jednotku', () => {
+  it('parseUnitPrice rozebere text z .price_per_unit', () => {
+    assert.deepEqual(parseUnitPrice('79,60 Kč / 1 kg'), { price: 79.6, unit: '1 kg' });
+    assert.deepEqual(parseUnitPrice('14,27 Kč / 1 l'), { price: 14.27, unit: '1 l' });
+    assert.deepEqual(parseUnitPrice('1 299,00 Kč / 1 kg'), { price: 1299, unit: '1 kg' });
+    assert.equal(parseUnitPrice(undefined), undefined);
+    assert.equal(parseUnitPrice('nesmysl'), undefined);
+  });
+
+  it('menší balení dostane cenu za kilo — jinak vypadá levněji, než je', () => {
+    const deals = run({ name: 'Cibule', slugs: ['cibule'], unitKey: '1-kg' });
+    const penny = deals.find((deal) => deal.store === 'Penny Market')!;
+    assert.equal(penny.priceLabel, '9,90 Kč / 0,5 kg');
+    assert.equal(penny.unitPriceLabel, '19,80 Kč / 1 kg'); // reálně dražší než Lidl
+    assert.equal(penny.unitPrice, 19.8);
+  });
+
+  it('nejlevnější se určuje z ceny za kilo, ne z ceny balení', () => {
+    const deals = markBest(run({ name: 'Cibule', slugs: ['cibule'], unitKey: '1-kg' }));
+    const best = deals.find((deal) => deal.best)!;
+    // Penny má nižší cenu balení (9,90), ale 19,80 Kč/kg proti 14,90 Kč/kg u Lidlu.
+    assert.equal(best.store, 'Lidl');
+    assert.equal(best.price, 14.9);
+  });
+
+  it('řazení také respektuje přepočet na jednotku', () => {
+    const deals = run({ name: 'Cibule', slugs: ['cibule'], unitKey: '1-kg' });
+    assert.deepEqual(
+      deals.map((deal) => deal.store),
+      ['Lidl', 'Penny Market', 'Kaufland'],
+    );
+  });
+
+  it('u nabídky rovnou za kilo se přepočet neopakuje', () => {
+    const deals = run({ name: 'Cibule', slugs: ['cibule'], unitKey: '1-kg' });
+    const lidl = deals.find((deal) => deal.store === 'Lidl')!;
+    assert.equal(lidl.priceLabel, '14,90 Kč / 1 kg');
+    assert.equal(lidl.unitPriceLabel, undefined);
+  });
+
+  it('250g máslo dostane cenu za kilo', () => {
+    const deals = run({ name: 'Máslo', slugs: ['maslo'], unitKey: '250-g' });
+    const lidl = deals.find((deal) => deal.store === 'Lidl')!;
+    assert.equal(lidl.priceLabel, '17,90 Kč / 250 g');
+    assert.equal(lidl.unitPriceLabel, '71,60 Kč / 1 kg');
   });
 });
 
@@ -170,9 +219,11 @@ describe('SCÉNÁŘ 6: víc slugů na jeden produkt', () => {
   const deals = run({ name: 'Cibule', slugs: ['cibule', 'cibule-cervena'], unitKey: '1-kg', maxPrice: 15 });
 
   it('slije oba slugy, dedupuje shodný řádek a odfiltruje drahou nabídku', () => {
+    // Řazeno podle ceny za kilo, takže Penny (9,90 za půl kila = 19,80 Kč/kg)
+    // skončí až za Lidlem, přestože má nejnižší cenu balení.
     assert.deepEqual(
       deals.map((deal) => `${deal.store} ${deal.price}`),
-      ['Penny Market 9.9', 'Albert 12.9', 'Lidl 14.9'],
+      ['Albert 12.9', 'Lidl 14.9', 'Penny Market 9.9'],
     );
   });
 

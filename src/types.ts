@@ -24,6 +24,8 @@ export interface RawOffer {
   /** Strojový klíč jednotky z data-key, např. "1-kg". */
   unitKey?: string;
   discountPercent?: number;
+  /** Surový text z .price_per_unit — Kupi tam má cenu už přepočtenou, např. "79,60 Kč / 1 kg". */
+  unitPriceText?: string;
   /** Surový text validity z DOM, např. "platí do středy 26. 8.". */
   validityText?: string;
   note?: string;
@@ -73,6 +75,18 @@ export interface Deal {
   price: number;
   unit?: string;
   unitKey?: string;
+
+  /**
+   * Cena přepočtená na základní jednotku, tak jak ji počítá samo Kupi.
+   * U nápojů cena za litr, u vážených potravin za kilo.
+   * Chybí, když ji Kupi neuvádí nebo když by jen zopakovala `priceLabel`.
+   */
+  unitPrice?: number;
+  /** Jednotka přepočtu, např. "1 l" nebo "1 kg". */
+  unitPriceUnit?: string;
+  /** Hotový text pro zobrazení, např. "14,27 Kč / 1 l". */
+  unitPriceLabel?: string;
+
   discountPercent?: number;
   validFrom?: string;
   validTo?: string;

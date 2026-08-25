@@ -84,6 +84,27 @@ export function rangeLabel(validFrom?: IsoDate, validTo?: IsoDate): string {
   return 'termín neuveden';
 }
 
+/**
+ * Rozebere text z `.price_per_unit` na číslo a jednotku.
+ *
+ * Kupi tam dává cenu už přepočtenou na základní jednotku — u nápojů za litr,
+ * u vážených potravin za kilo. Je to jediný spolehlivý způsob, jak porovnat
+ * 9,90 Kč / 0,5 kg proti 14,90 Kč / 1 kg, protože samotná `price` je cena
+ * za balení.
+ *
+ *   "79,60 Kč / 1 kg" -> { price: 79.6, unit: "1 kg" }
+ *   "14,27 Kč / 1 l"  -> { price: 14.27, unit: "1 l" }
+ */
+export function parseUnitPrice(text: string | undefined): { price: number; unit: string } | undefined {
+  if (!text) return undefined;
+  const match = text.replace(/ /g, ' ').match(/^\s*([\d\s.,]+)\s*Kč\s*\/\s*(.+?)\s*$/);
+  if (!match) return undefined;
+  const price = Number.parseFloat(match[1].replace(/\s/g, '').replace(',', '.'));
+  const unit = match[2].trim();
+  if (!Number.isFinite(price) || !unit) return undefined;
+  return { price, unit };
+}
+
 function dedupeKey(deal: Deal): string {
   return [deal.product, deal.store, deal.price, deal.unitKey ?? '', deal.validFrom ?? '', deal.validTo ?? ''].join('|');
 }
@@ -120,11 +141,21 @@ export function normalizeProduct({ product, offers, ldOffers, today }: Normalize
     // Expirované pryč. Když datum neznáme, nabídku raději necháme.
     if (validTo && diffDays(today, validTo) < 0) continue;
 
+    // Přepočtenou cenu uvádíme jen tehdy, když říká něco navíc — u nabídky
+    // za 1 kg by jen zopakovala cenu balení.
+    const parsedPerUnit = parseUnitPrice(offer.unitPriceText);
+    const mainLabel = priceLabel(offer.price, offer.unit);
+    const perUnitLabel = parsedPerUnit ? priceLabel(parsedPerUnit.price, parsedPerUnit.unit) : undefined;
+    const perUnit = perUnitLabel !== undefined && perUnitLabel !== mainLabel ? parsedPerUnit : undefined;
+
     deals.push({
       product: product.name,
       store: offer.store,
       status,
-      priceLabel: priceLabel(offer.price, offer.unit),
+      priceLabel: mainLabel,
+      unitPrice: perUnit?.price,
+      unitPriceUnit: perUnit?.unit,
+      unitPriceLabel: perUnit ? perUnitLabel : undefined,
       validLabel: validLabel(status, today, validFrom, validTo),
       rangeLabel: rangeLabel(validFrom, validTo),
       best: false, // doplní markBest() až nad kompletním seznamem
@@ -166,11 +197,22 @@ export function applyMaxPrice(deal: Deal, product: WatchedProduct): boolean {
   return deal.price <= product.maxPrice;
 }
 
+/**
+ * Cena, podle které má smysl nabídky porovnávat.
+ *
+ * `price` je cena balení, takže 9,90 Kč za půl kila vypadá levněji než
+ * 14,90 Kč za kilo, přestože je dražší. Když Kupi uvádí přepočet na základní
+ * jednotku, řídíme se jím.
+ */
+export function comparablePrice(deal: Deal): number {
+  return deal.unitPrice ?? deal.price;
+}
+
 /** Aktivní před připravovanými, uvnitř skupiny od nejlevnějšího. */
 export function compareDeals(a: Deal, b: Deal): number {
   if (a.status !== b.status) return a.status === 'active' ? -1 : 1;
   if (a.product !== b.product) return a.product.localeCompare(b.product, 'cs');
-  return a.price - b.price;
+  return comparablePrice(a) - comparablePrice(b);
 }
 
 /**
@@ -183,13 +225,14 @@ export function markBest(deals: Deal[]): Deal[] {
   for (const deal of deals) {
     const key = `${deal.product}|${deal.status}`;
     const current = cheapest.get(key);
-    if (current === undefined || deal.price < current) cheapest.set(key, deal.price);
+    const price = comparablePrice(deal);
+    if (current === undefined || price < current) cheapest.set(key, price);
   }
 
   const taken = new Set<string>();
   for (const deal of deals) {
     const key = `${deal.product}|${deal.status}`;
-    deal.best = !taken.has(key) && deal.price === cheapest.get(key);
+    deal.best = !taken.has(key) && comparablePrice(deal) === cheapest.get(key);
     if (deal.best) taken.add(key);
   }
   return deals;

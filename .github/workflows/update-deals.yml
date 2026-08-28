@@ -1,11 +1,13 @@
 name: Aktualizace akcí
 
 on:
-  # 04:00 UTC = 06:00 Praha v létě, 05:00 v zimě. DST záměrně neřešíme.
-  # Cron se běžně zpozdí o 5–30 minut, což u denních dat nevadí.
-  # Když je Mac vypnutý, job počká ve frontě na runner.
+  # 06:00, 11:00 a 17:00 UTC = 8:00, 13:00 a 19:00 Praha v létě (o hodinu dřív
+  # v zimě, DST záměrně neřešíme). Data se mění jednou denně — tři běhy jsou
+  # tu proto, že MacBook bývá zavřený a jeden pokus se běžně nepovede.
+  # Když je Mac vypnutý, job počká ve frontě a GitHub ho po čase zruší;
+  # od toho jsou ty další dva pokusy.
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '0 6,11,17 * * *'
   # Ruční spuštění při vývoji a ladění.
   workflow_dispatch:
 
@@ -37,6 +39,13 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+
+      # Runner na Macu už dvakrát spadl na "lost communication with the server" —
+      # stroj usnul uprostřed jobu. caffeinate ho drží vzhůru 15 minut a pak
+      # se sám ukončí. Na zavřené víko bez externího monitoru to nestačí,
+      # tam pomůže jen probuzení (pmset).
+      - name: Nenechat Mac usnout během běhu
+        run: nohup caffeinate -dimsu -t 900 >/dev/null 2>&1 &
 
       - run: npm ci
 

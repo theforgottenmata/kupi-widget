@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T15:27:37.776Z",
+  "updatedAt": "2026-08-28T07:56:48.841Z",
   "deals": [
     {
       "product": "Banány",
@@ -259,12 +259,29 @@
     },
     {
       "product": "Kuřecí prsa",
+      "store": "Penny Market",
+      "status": "active",
+      "priceLabel": "99,90 Kč / 1 kg",
+      "validLabel": "do ne 30. 8.",
+      "rangeLabel": "do ne 30. 8.",
+      "best": true,
+      "price": 99.9,
+      "unit": "1 kg",
+      "unitKey": "1-kg",
+      "discountPercent": 54,
+      "validTo": "2026-08-30",
+      "discountId": 10803699,
+      "productId": 791,
+      "shopId": 7
+    },
+    {
+      "product": "Kuřecí prsa",
       "store": "Lidl",
       "status": "active",
       "priceLabel": "169,90 Kč / 1 kg",
       "validLabel": "do ne 30. 8.",
       "rangeLabel": "do ne 30. 8.",
-      "best": true,
+      "best": false,
       "price": 169.9,
       "unit": "1 kg",
       "unitKey": "1-kg",
@@ -416,21 +433,21 @@
     },
     {
       "product": "Kuřecí prsa",
-      "store": "Penny Market",
+      "store": "ZEMAN maso - uzeniny",
       "status": "upcoming",
-      "priceLabel": "99,90 Kč / 1 kg",
-      "validLabel": "od zítřka",
-      "rangeLabel": "pá 28. 8. – ne 30. 8.",
+      "priceLabel": "169,90 Kč / 1 kg",
+      "validLabel": "od po 31. 8.",
+      "rangeLabel": "po 31. 8. – so 5. 9.",
       "best": true,
-      "price": 99.9,
+      "price": 169.9,
       "unit": "1 kg",
       "unitKey": "1-kg",
-      "discountPercent": 54,
-      "validFrom": "2026-08-28",
-      "validTo": "2026-08-30",
-      "discountId": 10803699,
+      "discountPercent": 22,
+      "validFrom": "2026-08-31",
+      "validTo": "2026-09-05",
+      "discountId": 10822341,
       "productId": 791,
-      "shopId": 7
+      "shopId": 449
     }
   ]
 }

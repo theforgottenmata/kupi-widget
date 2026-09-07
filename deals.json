@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T11:43:31.852Z",
+  "updatedAt": "2026-09-07T20:25:16.501Z",
   "deals": [
     {
       "product": "Avokádo",
@@ -263,6 +263,26 @@
     },
     {
       "product": "Coca-Cola Zero",
+      "store": "Košík.cz",
+      "status": "active",
+      "priceLabel": "34,90 Kč / 1.5 l",
+      "unitPrice": 23.27,
+      "unitPriceUnit": "1 l",
+      "unitPriceLabel": "23,27 Kč / 1 l",
+      "validLabel": "platí nyní",
+      "rangeLabel": "termín neuveden",
+      "best": false,
+      "price": 34.9,
+      "unit": "1.5 l",
+      "unitKey": "1.5-l",
+      "discountPercent": 22,
+      "note": "Coca-Cola Zero 1.5l",
+      "discountId": 9461868,
+      "productId": 28714,
+      "shopId": 308
+    },
+    {
+      "product": "Coca-Cola Zero",
       "store": "JIP CC Cash & Carry",
       "status": "active",
       "priceLabel": "59,90 Kč / 4x 0.33 l",
@@ -322,27 +342,6 @@
       "discountId": 10847589,
       "productId": 10582,
       "shopId": 3510
-    },
-    {
-      "product": "Česnek",
-      "store": "Košík.cz",
-      "status": "active",
-      "priceLabel": "34,90 Kč / 0.19 kg",
-      "unitPrice": 183.68,
-      "unitPriceUnit": "1 kg",
-      "unitPriceLabel": "183,68 Kč / 1 kg",
-      "validLabel": "zítra končí",
-      "rangeLabel": "do út 8. 9.",
-      "best": false,
-      "price": 34.9,
-      "unit": "0.19 kg",
-      "unitKey": "0.19-kg",
-      "discountPercent": 48,
-      "validTo": "2026-09-08",
-      "note": "Česnek bílý, svazek 190g",
-      "discountId": 10880577,
-      "productId": 10582,
-      "shopId": 308
     },
     {
       "product": "Fanta Zero",

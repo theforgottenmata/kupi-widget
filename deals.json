@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-11T11:06:48.120Z",
+  "updatedAt": "2026-09-11T15:04:13.705Z",
   "deals": [
     {
       "product": "Avokádo",
@@ -370,6 +370,26 @@
       "discountId": 10906881,
       "productId": 10582,
       "shopId": 38
+    },
+    {
+      "product": "Česnek",
+      "store": "Košík.cz",
+      "status": "active",
+      "priceLabel": "59,90 Kč / 0.25 kg",
+      "unitPrice": 239.6,
+      "unitPriceUnit": "1 kg",
+      "unitPriceLabel": "239,60 Kč / 1 kg",
+      "validLabel": "platí nyní",
+      "rangeLabel": "termín neuveden",
+      "best": false,
+      "price": 59.9,
+      "unit": "0.25 kg",
+      "unitKey": "0.25-kg",
+      "discountPercent": 14,
+      "note": "Česnek Paličák 250g",
+      "discountId": 10987632,
+      "productId": 10582,
+      "shopId": 308
     },
     {
       "product": "Kuřecí prsa",

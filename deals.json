@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T10:17:16.962Z",
+  "updatedAt": "2026-09-12T19:10:02.317Z",
   "deals": [
     {
       "product": "Avokádo",
@@ -172,6 +172,23 @@
       "discountId": 10911645,
       "productId": 914,
       "shopId": 4
+    },
+    {
+      "product": "Cibule",
+      "store": "Košík.cz",
+      "status": "active",
+      "priceLabel": "19,90 Kč / 1 kg",
+      "validLabel": "platí nyní",
+      "rangeLabel": "termín neuveden",
+      "best": false,
+      "price": 19.9,
+      "unit": "1 kg",
+      "unitKey": "1-kg",
+      "discountPercent": 20,
+      "note": "Cibule žlutá, síť 1kg",
+      "discountId": 10990155,
+      "productId": 914,
+      "shopId": 308
     },
     {
       "product": "Coca-Cola Zero",
@@ -370,26 +387,6 @@
       "discountId": 10906881,
       "productId": 10582,
       "shopId": 38
-    },
-    {
-      "product": "Česnek",
-      "store": "Košík.cz",
-      "status": "active",
-      "priceLabel": "59,90 Kč / 0.25 kg",
-      "unitPrice": 239.6,
-      "unitPriceUnit": "1 kg",
-      "unitPriceLabel": "239,60 Kč / 1 kg",
-      "validLabel": "platí nyní",
-      "rangeLabel": "termín neuveden",
-      "best": false,
-      "price": 59.9,
-      "unit": "0.25 kg",
-      "unitKey": "0.25-kg",
-      "discountPercent": 14,
-      "note": "Česnek Paličák 250g",
-      "discountId": 10987632,
-      "productId": 10582,
-      "shopId": 308
     },
     {
       "product": "Kuřecí prsa",

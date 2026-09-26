@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-25T20:37:45.797Z",
+  "updatedAt": "2026-09-26T19:08:15.664Z",
   "deals": [
     {
       "product": "Avokádo",
@@ -111,7 +111,7 @@
       "store": "Penny Market",
       "status": "active",
       "priceLabel": "19,90 Kč / 1 kg",
-      "validLabel": "do ne 27. 9.",
+      "validLabel": "zítra končí",
       "rangeLabel": "do ne 27. 9.",
       "best": false,
       "price": 19.9,
@@ -296,7 +296,7 @@
       "store": "Penny Market",
       "status": "active",
       "priceLabel": "13,90 Kč / 1 kg",
-      "validLabel": "do ne 27. 9.",
+      "validLabel": "zítra končí",
       "rangeLabel": "do ne 27. 9.",
       "best": false,
       "price": 13.9,
@@ -376,7 +376,7 @@
       "unitPrice": 18.45,
       "unitPriceUnit": "1 l",
       "unitPriceLabel": "18,45 Kč / 1 l",
-      "validLabel": "do ne 27. 9.",
+      "validLabel": "zítra končí",
       "rangeLabel": "do ne 27. 9.",
       "best": false,
       "price": 36.9,
@@ -395,7 +395,7 @@
       "unitPrice": 47.93,
       "unitPriceUnit": "1 l",
       "unitPriceLabel": "47,93 Kč / 1 l",
-      "validLabel": "do ne 27. 9.",
+      "validLabel": "zítra končí",
       "rangeLabel": "do ne 27. 9.",
       "best": false,
       "price": 94.9,

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T11:41:55.303Z",
+  "updatedAt": "2026-10-27T21:23:06.939Z",
   "deals": [
     {
       "product": "Avokádo",
@@ -54,6 +54,26 @@
       "shopId": 3
     },
     {
+      "product": "Avokádo",
+      "store": "Košík.cz",
+      "status": "active",
+      "priceLabel": "39,90 Kč / 0.25 kg",
+      "unitPrice": 159.6,
+      "unitPriceUnit": "1 kg",
+      "unitPriceLabel": "159,60 Kč / 1 kg",
+      "validLabel": "platí nyní",
+      "rangeLabel": "termín neuveden",
+      "best": false,
+      "price": 39.9,
+      "unit": "0.25 kg",
+      "unitKey": "0.25-kg",
+      "discountPercent": 33,
+      "note": "Avokádo Hass \"ready to eat\", 250g",
+      "discountId": 11321577,
+      "productId": 4414,
+      "shopId": 308
+    },
+    {
       "product": "Bezlaktózové trvanlivé mléko",
       "store": "Penny Market",
       "status": "active",
@@ -90,16 +110,16 @@
       "product": "Cibule",
       "store": "Košík.cz",
       "status": "active",
-      "priceLabel": "1,49 Kč / 1 ks",
+      "priceLabel": "1,34 Kč / 1 ks",
       "validLabel": "platí nyní",
       "rangeLabel": "termín neuveden",
       "best": true,
-      "price": 1.49,
+      "price": 1.34,
       "unit": "1 ks",
       "unitKey": "1-ks",
       "discountPercent": 40,
-      "note": "Cibule žlutá, cca 100g",
-      "discountId": 11308332,
+      "note": "Cibule žlutá, cca 90g",
+      "discountId": 11321610,
       "productId": 914,
       "shopId": 308
     },

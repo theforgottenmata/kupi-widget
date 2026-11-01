@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T13:24:57.022Z",
+  "updatedAt": "2026-11-01T21:00:11.439Z",
   "deals": [
     {
       "product": "Avokádo",
@@ -215,16 +215,16 @@
       "product": "Cibule",
       "store": "Košík.cz",
       "status": "active",
-      "priceLabel": "1,81 Kč / 1 ks",
+      "priceLabel": "1,67 Kč / 1 ks",
       "validLabel": "platí nyní",
       "rangeLabel": "termín neuveden",
       "best": true,
-      "price": 1.81,
+      "price": 1.67,
       "unit": "1 ks",
       "unitKey": "1-ks",
       "discountPercent": 44,
-      "note": "Cibule žlutá, cca 130g",
-      "discountId": 11353977,
+      "note": "Cibule žlutá, cca 120g",
+      "discountId": 11357019,
       "productId": 914,
       "shopId": 308
     },
